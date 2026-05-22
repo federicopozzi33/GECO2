@@ -18,7 +18,82 @@ Try the interactive demo on Hugging Face:
 👉 [DEMO HERE](https://huggingface.co/spaces/jerpelhan/GECO2-demo)
 
 
+## Installation as a dependency
 
+The repository can now be installed directly as a Python package.
+
+Tested installation paths:
+
+- `pip install .`
+- `pip install -e .`
+- `pip install git+https://github.com/jerpelhan/GECO2.git`
+
+### Core package
+
+```bash
+pip install git+https://github.com/jerpelhan/GECO2.git
+```
+
+### Optional extras
+
+```bash
+# Demo UI dependencies
+pip install -e ".[demo]"
+
+# Evaluation helpers (Detectron2 still needs to be installed separately)
+pip install -e ".[eval]"
+```
+
+### Editable install from source
+
+```bash
+pip install -e .
+```
+
+### Standard install from source
+
+```bash
+pip install .
+```
+
+### Build a wheel manually
+
+```bash
+python -m pip install --upgrade build
+python -m build --wheel
+pip install dist/geco2-0.1.0-py3-none-any.whl
+```
+
+The optional CUDA extension for deformable attention is built automatically when possible.  
+If compilation is not available, installation still succeeds and GECO2 falls back to a slower pure-PyTorch implementation.
+
+### Quick verification
+
+After installation, you can verify that the package is available with:
+
+```bash
+python -c "import geco2; print(geco2.__version__)"
+```
+
+### macOS note: missing `_lzma`
+
+Some Python builds on macOS are compiled without `lzma` support. In that case, importing heavier optional modules may fail with:
+
+```text
+ModuleNotFoundError: No module named '_lzma'
+```
+
+This is a Python runtime issue, not a GECO2 packaging issue. If you hit it, reinstall Python with `xz` support enabled. For example, with Homebrew + pyenv:
+
+```bash
+brew install xz
+export LDFLAGS="-L$(brew --prefix xz)/lib"
+export CPPFLAGS="-I$(brew --prefix xz)/include"
+pyenv install 3.12.9
+pyenv local 3.12.9
+```
+
+Then recreate your virtual environment and reinstall GECO2.
 
 
 ## Highlights

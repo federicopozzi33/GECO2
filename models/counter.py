@@ -36,8 +36,6 @@ class CNT(nn.Module):
         self.image_size = image_size
         self.zero_shot = zero_shot
         self.pretrain = False
-        # TODO REMOVE!!
-        torch.hub.set_dir('/d/hpc/projects/FRI/pelhanj/CNT_SAM2/models/')
         self.class_embed = nn.Sequential(nn.Linear(emb_dim, 1), nn.LeakyReLU())
         self.bbox_embed = MLP(emb_dim, emb_dim, 4, 3)
         if not self.pretrain:
@@ -58,7 +56,7 @@ class CNT(nn.Module):
             input_image_size=(self.image_size, self.image_size),
             mask_in_chans=16,
         )
-        config_name = '../configs/sam2_hiera_base_plus.yaml'
+        config_name = 'sam2_hiera_base_plus.yaml'
         cfg = compose(config_name=config_name)
         OmegaConf.resolve(cfg)
         self.backbone = instantiate(cfg.backbone, _recursive_=True)

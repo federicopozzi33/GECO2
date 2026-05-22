@@ -9,9 +9,9 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 import torch
-from sam2.modeling.sam2_base import SAM2Base
-from sam2.sam2_image_predictor import SAM2ImagePredictor
-from sam2.utils.amg import (
+from sam2.sam2.modeling.sam2_base import SAM2Base
+from sam2.sam2.sam2_image_predictor import SAM2ImagePredictor
+from sam2.sam2.utils.amg import (
     area_from_rle,
     batch_iterator,
     batched_mask_to_box,
@@ -160,7 +160,7 @@ class SAM2AutomaticMaskGenerator:
         Returns:
           (SAM2AutomaticMaskGenerator): The loaded model.
         """
-        from sam2.build_sam import build_sam2_hf
+        from sam2.sam2.build_sam import build_sam2_hf
 
         sam_model = build_sam2_hf(model_id, **kwargs)
         return cls(sam_model, **kwargs)

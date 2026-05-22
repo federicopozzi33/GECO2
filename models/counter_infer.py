@@ -53,7 +53,7 @@ class CNT(nn.Module):
             input_image_size=(self.image_size, self.image_size),
             mask_in_chans=16,
         )
-        config_name = '../configs/sam2_hiera_base_plus.yaml'
+        config_name = 'sam2_hiera_base_plus.yaml'
         cfg = compose(config_name=config_name)
         OmegaConf.resolve(cfg)
         self.backbone = instantiate(cfg.backbone, _recursive_=True)

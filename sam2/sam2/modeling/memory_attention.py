@@ -7,8 +7,8 @@
 from typing import Optional
 
 import torch
-from sam2.modeling.sam.transformer import RoPEAttention
-from sam2.modeling.sam2_utils import get_activation_fn, get_clones
+from sam2.sam2.modeling.sam.transformer import RoPEAttention
+from sam2.sam2.modeling.sam2_utils import get_activation_fn, get_clones
 from torch import nn, Tensor
 
 

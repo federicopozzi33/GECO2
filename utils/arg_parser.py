@@ -1,4 +1,5 @@
 import argparse
+import os
 
 
 def get_argparser():
@@ -9,12 +10,12 @@ def get_argparser():
     parser.add_argument('--model_name_resumed', default='GECO2FSCD', type=str)
     parser.add_argument(
         '--data_path',
-        default='/storage/datasets/fsc147',
+        default=os.environ.get('GECO2_DATA_PATH', 'data/fsc147'),
         type=str
     )
     parser.add_argument(
         '--model_path',
-        default='/d/hpc/projects/FRI/pelhanj/CNT_SAM2/models/',
+        default=os.environ.get('GECO2_MODEL_PATH', '.'),
         type=str
     )
     parser.add_argument('--dataset', default='fsc147', type=str)
